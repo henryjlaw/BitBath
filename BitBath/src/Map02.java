@@ -30,7 +30,7 @@ import java.util.Arrays;
 //	0 			R 		4 			16 		1
 // 	total 				4 
 //	}
-// HL
+
 
 public class Map02 implements Map {
 	// Radio: Region
