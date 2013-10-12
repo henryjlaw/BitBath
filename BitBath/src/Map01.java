@@ -36,21 +36,21 @@ public class Map01 implements Map {
 	final static int[][] CONNECT = {
 			//
 			{ 0, 1, 4, 5 }, // 0
-			{ 0, 1, 2, 4, 5, 6 }, // 1
-			{ 1, 2, 3, 5, 6, 7 }, // 2
-			{ 2, 3, 6, 7 }, // 3
-			{ 0, 1, 4, 5, 8, 9 },// 4
-			{ 0, 1, 2, 4, 5, 6, 8, 9, 10 },// 5
-			{ 1, 2, 3, 5, 6, 7, 9, 10, 11 }, // 6
-			{ 2, 3, 6, 7, 10, 11 }, // 7
-			{ 4, 5, 8, 9, 12, 13 }, // 8
-			{ 4, 5, 6, 8, 9, 10, 12, 13, 14 }, // 9
-			{ 5, 6, 7, 9, 10, 11, 13, 14, 15 }, // 10
-			{ 6, 7, 10, 11, 14, 15 },// 11
-			{ 8, 9, 12, 13 },// 12
-			{ 8, 9, 10, 12, 13, 14 },// 13
-			{ 9, 10, 11, 13, 14, 15 },// 14
-			{ 10, 11, 14, 15 } // 15
+			{ 1, 0, 2, 4, 5, 6 }, // 1
+			{ 2, 1, 3, 5, 6, 7 }, // 2
+			{ 3, 2, 6, 7 }, // 3
+			{ 4, 0, 1, 5, 8, 9 },// 4
+			{ 5, 0, 1, 2, 4, 6, 8, 9, 10 },// 5
+			{ 6, 1, 2, 3, 5, 7, 9, 10, 11 }, // 6
+			{ 7, 2, 3, 6, 10, 11 }, // 7
+			{ 8, 4, 5, 9, 12, 13 }, // 8
+			{ 9, 4, 5, 6, 8, 10, 12, 13, 14 }, // 9
+			{ 10, 5, 6, 7, 9, 11, 13, 14, 15 }, // 10
+			{ 11, 6, 7, 10, 14, 15 },// 11
+			{ 12, 8, 9, 13 },// 12
+			{ 13, 8, 9, 10, 12, 14 },// 13
+			{ 14, 9, 10, 11, 13, 15 },// 14
+			{ 15, 10, 11, 14 } // 15
 	};
 	// Radio: Region
 	final static int CITY_F = 0, CITY_E = 1, CITY_N = 2, UNIT_F = 3,
@@ -71,24 +71,6 @@ public class Map01 implements Map {
 		for (int i = 0; i < CONNECT[center].length; i++) {
 			updateRegion(map[CONNECT[center][i]], data[i]);
 		}
-		// if (center >= 5)
-		// updateRegion(map[center - 5], data[0]);
-		// if (center >= 4)
-		// updateRegion(map[center - 4], data[1]);
-		// if (center >= 3)
-		// updateRegion(map[center - 3], data[2]);
-		// if (center >= 1)
-		// updateRegion(map[center - 1], data[3]);
-		// if (center >= 0)
-		// updateRegion(map[center - 0], data[4]);
-		// if (center <= 14)
-		// updateRegion(map[center + 1], data[5]);
-		// if (center <= 12)
-		// updateRegion(map[center + 3], data[6]);
-		// if (center <= 11)
-		// updateRegion(map[center + 4], data[7]);
-		// if (center <= 10)
-		// updateRegion(map[center + 5], data[8]);
 	}
 
 	public static void updateRegion(int[] region, int[] update) {
@@ -133,24 +115,6 @@ public class Map01 implements Map {
 		for (int i = 0; i < CONNECT[center].length; i++) {
 			data[i] = map[CONNECT[center][i]];
 		}
-		// if (center >= 5)
-		// data[0] = map[center - 5];
-		// if (center >= 4)
-		// data[1] = map[center - 4];
-		// if (center >= 3)
-		// data[2] = map[center - 3];
-		// if (center >= 1)
-		// data[3] = map[center - 1];
-		// if (center >= 0)
-		// data[4] = map[center + 0];
-		// if (center <= 14)
-		// data[5] = map[center + 1];
-		// if (center <= 12)
-		// data[6] = map[center + 3];
-		// if (center <= 11)
-		// data[7] = map[center + 4];
-		// if (center <= 10)
-		// data[8] = map[center + 5];
 		/**
 		 * <developer comment>: given this method might result in mapping data
 		 * to the wrong region, but such scenario should never happen as units
@@ -165,7 +129,7 @@ public class Map01 implements Map {
 		updateMap(map, x, y, 0, type);
 		int[][] data = new int[10][5];
 		createUnitView(data, map, x, y);
-		data[9][0] = R02.toR(x, y);
+		data[UNIT_DATA][CENTER] = R02.toR(x, y);
 		Radio01.encodeRadio(radio, data);
 	}
 
